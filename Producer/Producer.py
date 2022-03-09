@@ -1,7 +1,7 @@
-import imp
 from faker import Faker
-import fastavro
+from fastavro import writer, schema
 import pykafka
+
 
 f = Faker()
 #TODO: Figure out facts and dims

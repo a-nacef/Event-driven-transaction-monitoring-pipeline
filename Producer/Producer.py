@@ -1,6 +1,6 @@
 import imp
 from faker import Faker
-import avro.schema
+import fastavro
 import pykafka
 
 f = Faker()

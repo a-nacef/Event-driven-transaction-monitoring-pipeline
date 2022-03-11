@@ -4,14 +4,13 @@ import pykafka
 
 
 f = Faker()
-#TODO: Figure out facts and dims
 #TODO: Encode schema in avro_schema
 #TODO: Configure Kafka connection
 
 
-
 #This will return the payload as a python dict
 def produce_record():
+    produce_person() #With set locale
     
     
     

@@ -1,20 +1,12 @@
 from faker import Faker
 from fastavro import writer, schema
-import pykafka
+import confluent_kafka
+from produce_record import Produce
 
-
-f = Faker()
 #TODO: Encode schema in avro_schema
 #TODO: Configure Kafka connection
 
 
-#This will return the payload as a python dict
-def produce_record():
-    produce_person() #With set locale
-    
-    
-    
-    return 
 
 
 #Returns an avro object

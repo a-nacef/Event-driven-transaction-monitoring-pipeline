@@ -1,4 +1,3 @@
-from faker import Faker
 from fastavro import writer, schema
 import confluent_kafka
 from produce_record import Produce
@@ -8,10 +7,8 @@ from produce_record import Produce
 
 
 
-
-#Returns an avro object
-def serialize_data(data):
-    #serialization logic
+def serialize_data(data, schema):
+    
     return data
 
 

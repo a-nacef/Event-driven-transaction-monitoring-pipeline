@@ -2,8 +2,6 @@ from datetime import datetime
 from faker import *
 import random
 import json
-from numpy import random as rd
-
 
 
 locales = ["en_AU", "en_US", "en_GB", "en_NZ"]
@@ -12,11 +10,11 @@ Age_band = ["Young adult", "Adult","Senior"]
 Income_band = ["Low", "Mid", "High"]
 Gender = ["M", "F", "NB"]
 
+weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 
-
+types = ["Financial", "Training", "Software", "Legal", "Entertainment", "Marketing", "Consulting", "Legal"]
 
 fake = Faker(locales)
-
 
 def produce():
     payload = {}
@@ -25,7 +23,7 @@ def produce():
     event = {}
     dim_date = {}
     dim_beneficiary = {}
-
+    timestamp = datetime.now().timestamp()
 
     #Creating a person
     loc = random.choice(locales)
@@ -47,20 +45,28 @@ def produce():
     payment = round(random.uniform(15.0, 40000),2)
     interest = round(random.uniform(0.03, 0.05) * payment,2)
     event["total_payment"] = payment
-    event["fees_charged"] = interest + round(random.uniform(0.05,0.1) * payment,2)
+    event["fees_charged"] = interest + round(random.uniform(0.02,0.04) * payment,2)
     event["Interest paid"] = interest
-    event["timestamp"] = datetime.now()
+    event["timestamp"] = timestamp
     event["total_overdrawn"] = random.choice([0,0,0, round(random.uniform(0.05, 0.3)*payment,2)]) #very hacky weighted probability there is probably a cleaner way to do this
 
     payload["facts"] = event
 
     #inferring date attributes from datetime.now
+    now = datetime.now()
+    dim_date["timestamp"] = timestamp
+    dim_date["date"] =now.date().ctime()
+    dim_date["Calendar_year"] = now.year
+    dim_date["Month"] = now.month
+    dim_date["Weekday_indicator"] = True if weekdays[now.isoweekday()-1] else False
+    dim_date["Quarter"] = (now.month  // 4) + 1
 
-
+    payload["date"] = dim_date
     #Filling in a random beneficiary
+    dim_beneficiary["Address"] = f.address
+    dim_beneficiary["Type"] = random.choice(types)
+    dim_beneficiary["Name"] = f.company
+    dim_beneficiary["Multinational_indicator"] = lambda random: random.random() < 0.5
+    
 
-    print(payload)
-
-#debug: produce 20 events
-for _ in range(20):
-    produce()
+    return payload

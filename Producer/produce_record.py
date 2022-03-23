@@ -24,7 +24,7 @@ def produce():
     dim_date = {}
     dim_beneficiary = {}
     timestamp = datetime.now().timestamp()
-
+    half_bool = lambda x: x < 0.5
     #Creating a person
     loc = random.choice(locales)
     f =  fake[loc]
@@ -34,7 +34,7 @@ def produce():
     person["Income_band"] = random.choice(Income_band)
     person["Gender"] = random.choice(Gender)
     person["Card number"] = f.credit_card_number()
-    person["Account_creation_date"] = f.past_date()
+    person["Account_creation_date"] = str(f.past_date())
     person["city"] = f.city()
     person["risk_score"] = random.random()
     person["credit_limit"] = round((1-person["risk_score"])*3000)
@@ -55,7 +55,7 @@ def produce():
     #inferring date attributes from datetime.now
     now = datetime.now()
     dim_date["timestamp"] = timestamp
-    dim_date["date"] =now.date().ctime()
+    dim_date["date"] = str(now.date())
     dim_date["Calendar_year"] = now.year
     dim_date["Month"] = now.month
     dim_date["Weekday_indicator"] = True if weekdays[now.isoweekday()-1] else False
@@ -63,10 +63,13 @@ def produce():
 
     payload["date"] = dim_date
     #Filling in a random beneficiary
-    dim_beneficiary["Address"] = f.address
+    dim_beneficiary["Address"] = f.address()
     dim_beneficiary["Type"] = random.choice(types)
-    dim_beneficiary["Name"] = f.company
-    dim_beneficiary["Multinational_indicator"] = lambda random: random.random() < 0.5
-    
+    dim_beneficiary["Name"] = f.company()
+    dim_beneficiary["Multinational_indicator"] = half_bool(random.random())
+    payload["beneficiary"] = dim_beneficiary
 
     return payload
+
+#DEBUG
+#print(produce())

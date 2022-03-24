@@ -36,7 +36,7 @@ def produce():
     person["Card number"] = f.credit_card_number()
     person["Account_creation_date"] = str(f.past_date())
     person["city"] = f.city()
-    person["risk_score"] = random.random()
+    person["risk_score"] = round(random.random(),2)
     person["credit_limit"] = round((1-person["risk_score"])*3000)
     
     payload["person"] = person
@@ -69,7 +69,4 @@ def produce():
     dim_beneficiary["Multinational_indicator"] = half_bool(random.random())
     payload["beneficiary"] = dim_beneficiary
 
-    return payload
-
-#DEBUG
-#print(produce())
+    return json.dumps(payload), loc

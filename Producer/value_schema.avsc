@@ -1,0 +1,143 @@
+{
+  "name": "MyClass",
+  "type": "record",
+  "namespace": "com.acme.avro",
+  "fields": [
+    {
+      "name": "person",
+      "type": {
+        "name": "person",
+        "type": "record",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "country",
+            "type": "string"
+          },
+          {
+            "name": "age_band",
+            "type": "string"
+          },
+          {
+            "name": "Income_band",
+            "type": "string"
+          },
+          {
+            "name": "Gender",
+            "type": "string"
+          },
+          {
+            "name": "Card_number",
+            "type": "string"
+          },
+          {
+            "name": "Account_creation_date",
+            "type": "string"
+          },
+          {
+            "name": "city",
+            "type": "string"
+          },
+          {
+            "name": "risk_score",
+            "type": "float"
+          },
+          {
+            "name": "credit_limit",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "facts",
+      "type": {
+        "name": "facts",
+        "type": "record",
+        "fields": [
+          {
+            "name": "total_payment",
+            "type": "float"
+          },
+          {
+            "name": "fees_charged",
+            "type": "float"
+          },
+          {
+            "name": "Interest_paid",
+            "type": "float"
+          },
+          {
+            "name": "timestamp",
+            "type": "float"
+          },
+          {
+            "name": "total_overdrawn",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "date",
+      "type": {
+        "name": "date",
+        "type": "record",
+        "fields": [
+          {
+            "name": "timestamp",
+            "type": "float"
+          },
+          {
+            "name": "date",
+            "type": "string"
+          },
+          {
+            "name": "Calendar_year",
+            "type": "int"
+          },
+          {
+            "name": "Month",
+            "type": "int"
+          },
+          {
+            "name": "Weekday_indicator",
+            "type": "boolean"
+          },
+          {
+            "name": "Quarter",
+            "type": "int"
+          }
+        ]
+      }
+    },
+    {
+      "name": "beneficiary",
+      "type": {
+        "name": "beneficiary",
+        "type": "record",
+        "fields": [
+          {
+            "name": "Address",
+            "type": "string"
+          },
+          {
+            "name": "Type",
+            "type": "string"
+          },
+          {
+            "name": "Name",
+            "type": "string"
+          },
+          {
+            "name": "Multinational_indicator",
+            "type": "boolean"
+          }
+        ]
+      }
+    }
+  ]
+}

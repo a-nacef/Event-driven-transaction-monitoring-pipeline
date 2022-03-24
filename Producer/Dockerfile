@@ -1,4 +1,4 @@
-FROM python:latest
+FROM fyndiq/python-confluent-kafka:latest
 WORKDIR /producer
 COPY . .
 RUN pip install -r requirements.txt

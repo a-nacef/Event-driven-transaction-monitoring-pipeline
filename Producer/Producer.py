@@ -8,9 +8,6 @@ import os
 import json
 
 
-#TODO: Encode schema in avro_schema
-#TODO: Configure Kafka connection
-
 
 with open("config.json") as f:
     config = json.loads(f.read())

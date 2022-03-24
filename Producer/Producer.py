@@ -30,18 +30,18 @@ Prod = Producer({
 
 
 
-#if __name__== "main":
-try:
-    while True:
-        data,key= produce()
-        sleep(config["Interval"])
-        print(f"Delivring message = {data}, key = {key}")
-        print("----------------------------------------------------------")
-        Prod.produce('Transactions', data.encode("utf-8"), key=key)
-except KeyboardInterrupt:
-    Prod.flush()
-    logging.info("Producer interrupted, exiting.")
-print("I ran")
+if __name__== "__main__":
+    try:
+        while True:
+            data,key= produce()
+            sleep(config["Interval"])
+            print(f"Delivring message = {data}, key = {key}")
+            print("----------------------------------------------------------")
+            Prod.produce('Transactions', data.encode("utf-8"), key=key)
+    except KeyboardInterrupt:
+        Prod.flush()
+        logging.info("Producer interrupted, exiting.")
+    print("I ran")
 
 
 

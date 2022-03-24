@@ -1,5 +1,2 @@
-FROM fyndiq/python-confluent-kafka:latest
-WORKDIR /producer
-COPY . .
-RUN pip install -r requirements.txt
+FROM producer:latest 
 CMD ["python3", "Producer.py"]

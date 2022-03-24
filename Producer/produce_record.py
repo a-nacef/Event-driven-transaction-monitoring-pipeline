@@ -66,7 +66,7 @@ def produce():
     dim_beneficiary["Address"] = f.address()
     dim_beneficiary["Type"] = random.choice(types)
     dim_beneficiary["Name"] = f.company()
-    dim_beneficiary["Multinational_indicator"] = half_bool(random.random())
+    dim_beneficiary["Multinational_indicator"] = random.random() < 0.5
     payload["beneficiary"] = dim_beneficiary
 
     return json.dumps(payload), loc

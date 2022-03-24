@@ -1,3 +1,4 @@
+from distutils.log import error
 from encodings import utf_8
 from gc import callbacks
 from time import sleep
@@ -25,7 +26,7 @@ def on_delivery(err, msg):
 
 
 Prod = Producer({
-    "bootstrap.servers":"localhost:9092"
+    "bootstrap.servers":"kafka:9092"
 })
 
 
@@ -35,14 +36,15 @@ if __name__== "__main__":
         while True:
             data,key= produce()
             sleep(config["Interval"])
-            print(f"Delivring message = {data}, key = {key}")
-            print("----------------------------------------------------------")
             Prod.produce('Transactions', data.encode("utf-8"), key=key)
+
+
+    except error:
+        logging.critical(f"Producer failed with err = {error}")
+        Prod.flush()
     except KeyboardInterrupt:
         Prod.flush()
         logging.info("Producer interrupted, exiting.")
-    print("I ran")
-
 
 
 

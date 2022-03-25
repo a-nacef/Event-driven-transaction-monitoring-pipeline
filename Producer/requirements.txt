@@ -1,4 +1,6 @@
 faker
+confluent_kafka
+confluent_kafka[avro]
 
 
 

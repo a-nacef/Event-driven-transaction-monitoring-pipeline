@@ -28,7 +28,6 @@ try:
         "bootstrap.servers":os.environ["KAFKA_STRING"]
     })
 except Exception:
-    logging.critical("Couldn't connect to the broker")
     exit(1)
 
 

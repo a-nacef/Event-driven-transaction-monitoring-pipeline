@@ -24,7 +24,7 @@ services:
     depends_on:
       - zookeeper
   producer:
-    image: producer:latest
+    image: event-producer:latest
     environment:
       - KAFKA_STRING=kafka:29092
     depends_on:

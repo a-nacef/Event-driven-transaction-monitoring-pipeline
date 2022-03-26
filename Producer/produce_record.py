@@ -58,7 +58,7 @@ def produce():
     dim_date["date"] = str(now.date())
     dim_date["Calendar_year"] = now.year
     dim_date["Month"] = now.month
-    dim_date["Weekday_indicator"] = True if weekdays[now.isoweekday()-1] else False
+    dim_date["Weekday_indicator"] = now.isoweekday()<6 
     dim_date["Quarter"] = (now.month  // 4) + 1
 
     payload["date"] = dim_date
@@ -68,5 +68,8 @@ def produce():
     dim_beneficiary["Name"] = f.company()
     dim_beneficiary["Multinational_indicator"] = random.random() < 0.5
     payload["beneficiary"] = dim_beneficiary
+
+    #DEBUG
+    print(payload)    
 
     return json.dumps(payload), loc

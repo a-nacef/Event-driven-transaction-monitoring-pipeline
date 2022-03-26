@@ -8,10 +8,10 @@ import os
 import json
 
 
-
 with open("config.json") as f:
     config = json.loads(f.read())
 
+logging.info("Starting producer..")
 
 
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
@@ -27,6 +27,7 @@ try:
     Prod = Producer({
         "bootstrap.servers":os.environ["KAFKA_STRING"]
     })
+    logging.info("Connected to the Broker")
 except Exception:
     exit(1)
 
@@ -36,10 +37,7 @@ try:
       data,key= produce()
       sleep(config["Interval"])
       Prod.produce('Transactions', data.encode("utf-8"), key=key)
-
-except Exception:
-  logging.critical(f"Producer failed.")
-  Prod.flush()
+  
 except KeyboardInterrupt:
   Prod.flush()
   logging.info("Producer interrupted, exiting.")

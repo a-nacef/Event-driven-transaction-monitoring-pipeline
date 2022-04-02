@@ -43,6 +43,8 @@ def normalize_payload(j):
 
     return json.dumps(out)
 
+
+
 try:
   while True:
       data,key= produce()

@@ -69,7 +69,11 @@ def produce():
     dim_beneficiary["Multinational_indicator"] = random.random() < 0.5
     payload["beneficiary"] = dim_beneficiary
 
-    #DEBUG
-    print(payload)    
+    return payload, loc
 
-    return json.dumps(payload), loc
+
+
+
+#This script would run as main for debugging purposes only
+if __name__ == "__main__":
+    produce()

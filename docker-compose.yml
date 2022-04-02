@@ -40,9 +40,7 @@ services:
     ports:
       - "8889:8888"
     volumes:
-      - "druid_data:/"
-    
-
+      - "druid_data:/apache-druid-0.22.1"
 volumes:
   zookeeper_data:
     driver: local

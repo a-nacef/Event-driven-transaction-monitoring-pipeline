@@ -6,6 +6,6 @@ Messages are produced to Kafka at set intervals, and processed in real-time with
 The Docker Engine and the Kafka Broker both expose Prometheus metrics, real-time monitoring at both the event and system level is made possible with Superset and Grafana respectively.
 (Last line is currently in development)
 ### Architechture
-![Project architechture](/Arch.jpg?raw=True "Architechture")
+![Project architechture](/arch.jpg?raw=True "Architechture")
 ### Dashboards
 [Placeholder]

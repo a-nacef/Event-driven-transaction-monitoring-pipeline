@@ -35,8 +35,7 @@ services:
     image: druid:latest
     depends_on:
       - zookeeper
-      - kafka
-      - producer
+      - kafka 
     ports:
       - "8889:8888"
     volumes:

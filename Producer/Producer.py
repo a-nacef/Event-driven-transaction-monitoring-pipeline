@@ -12,8 +12,6 @@ with open("config.json") as f:
     config = json.loads(f.read())
 
 logging.info("Starting producer..")
-
-
 logging.basicConfig(level=os.environ.get("LOGLEVEL", "INFO"))
 
 
@@ -54,7 +52,7 @@ try:
         logging.error("Unexpected format/schema") 
         pass 
       sleep(config["Interval"])
-      Prod.produce('Transactions', data.encode("utf-8"), key=key)
+      Prod.produce('transactions', data.encode("utf-8"), key=key)
         
 except KeyboardInterrupt:
   Prod.flush()

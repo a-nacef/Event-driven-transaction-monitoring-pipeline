@@ -40,10 +40,20 @@ services:
       - "8889:8888"
     volumes:
       - "druid_data:/apache-druid-0.22.1"
+  superset:
+    image: apache/superset:latest
+    depends_on:
+      - druid-nano
+    ports:
+      - "8890:8088" 
+    volumes:
+      - "superset_data:/home/superset/config"
 volumes:
   zookeeper_data:
     driver: local
   kafka_data:
     driver: local
   druid_data:
+    driver: local
+  superset_data:
     driver: local
